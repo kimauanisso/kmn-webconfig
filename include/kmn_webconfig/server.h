@@ -1,20 +1,30 @@
 #pragma once
 
-// Webconfig Configuration
+#include "dhcpserver/dhcpserver.h"
+#include "dnsserver/dnsserver.h"
 
-#ifndef SSID
-#define SSID "KMN_Hotspot"
-#endif
+typedef struct TCP_SERVER_T_ {
+  struct tcp_pcb *server_pcb;
+  bool complete;
+  ip_addr_t gw;
+} TCP_SERVER_T;
 
-#ifndef PASSWD
-#define PASSWD "12345678"
-#endif
+typedef struct ServerConfig {
+  const char *ssid;
+  const char *passwd;
+  TCP_SERVER_T *tcp_server;
+  dhcp_server_t dhcp_server;
+  dns_server_t dns_server;
+} ServerConfig;
 
-#ifndef WEBCONFIG_PORT
-#define WEBCONFIG_PORT 8000
-#endif
+/// @brief Creates server's config
+/// @param ssid Networks' SSID
+/// @param passwd Networks' Password
+int webconf_init_config(ServerConfig *config, const char *ssid,
+                        const char *passwd);
 
-// Methods
+/// @brief Starts webconfig server
+int webconf_start(ServerConfig *config);
 
-/// @brief Starts wifi hotspot
-void Hostpot_Init();
+/// @brief Stops webconfig server
+int webconf_stop(ServerConfig *config);
