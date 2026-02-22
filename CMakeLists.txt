@@ -26,8 +26,8 @@ target_include_directories(kmn_picow_webconfig PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/deps
 )
 
-pico_enable_stdio_uart(kmn_picow_webconfig 1)
-pico_enable_stdio_usb(kmn_picow_webconfig 0)
+pico_enable_stdio_uart(kmn_picow_webconfig 0)
+pico_enable_stdio_usb(kmn_picow_webconfig 1)
 
 target_link_libraries(kmn_picow_webconfig
   pico_stdlib
