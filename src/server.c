@@ -10,10 +10,6 @@
 #include "lwip/sockets.h"
 #include "lwip/tcp.h"
 
-char config_var1[64] = "default1";
-
-int config_var2 = 0;
-
 void Hostpot_Init() {
   if (cyw43_arch_init()) {
     return;
