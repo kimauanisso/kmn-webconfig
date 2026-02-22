@@ -1,9 +1,7 @@
 #include "kmn_webconfig/server.h"
 
-int main()
-{
+int main() {
   Hostpot_Init();
-  while (1)
-  {
+  while (1) {
   }
 }
