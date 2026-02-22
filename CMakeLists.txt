@@ -18,6 +18,7 @@ add_executable(kmn_picow_webconfig
   src/main.c
   src/server.c
   deps/dhcpserver/dhcpserver.c
+  deps/dnsserver/dnsserver.c
 )
 
 target_include_directories(kmn_picow_webconfig PRIVATE
