@@ -1,3 +1,8 @@
+# Build Files
 build/
+.cache/
+compile_commands.json
+
+# Dependencies
 .gitmodules
 pico-sdk/
