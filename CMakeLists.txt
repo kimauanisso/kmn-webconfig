@@ -17,10 +17,12 @@ pico_sdk_init()
 add_executable(kmn_picow_webconfig
   src/main.c
   src/server.c
+  deps/dhcpserver/dhcpserver.c
 )
 
 target_include_directories(kmn_picow_webconfig PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/include
+  ${CMAKE_CURRENT_LIST_DIR}/deps
 )
 
 pico_enable_stdio_uart(kmn_picow_webconfig 1)
