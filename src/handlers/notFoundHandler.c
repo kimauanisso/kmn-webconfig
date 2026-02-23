@@ -2,6 +2,6 @@
 
 #include "kmn_webconfig/http_response.h"
 
-void notFoundHandler(char *req, char *params, char *res) {
-  build_res_start(404, "Not Found", res);
+void notFoundHandler(char *req, char *params, ResponseBuffer *res) {
+  build_res_start(res, 404, "Not Found");
 }
