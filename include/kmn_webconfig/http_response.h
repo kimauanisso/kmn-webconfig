@@ -18,3 +18,4 @@ BufferOperationStatus res_buffer_append(ResponseBuffer *buf, const char *fmt,
                                         ...);
 
 void build_res_start(ResponseBuffer *buf, int code, char *message);
+void build_res_header(ResponseBuffer *buf, char *header, char *value);

@@ -35,3 +35,7 @@ BufferOperationStatus res_buffer_append(ResponseBuffer *buf, const char *fmt,
 void build_res_start(ResponseBuffer *buf, int code, char *message) {
   res_buffer_append(buf, "HTTP/1.1 %i %s\n", code, message);
 }
+
+void build_res_header(ResponseBuffer *buf, char *header, char *value) {
+  res_buffer_append(buf, "%s: %s\n", header, value);
+}
