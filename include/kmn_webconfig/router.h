@@ -11,5 +11,11 @@ typedef struct RouterConfig {
   WebConfigRouteHandler handler;
 } RouterConfig;
 
+/// @brief Adds a route into router registry
+/// @param route Route to be added
 void registerRoute(RouterConfig route);
+
+/// @brief Parses and handles request for a given route
+/// @param request Request buffer
+/// @param result Response buffer
 void handleRoute(HttpBuffer *request, HttpBuffer *result);

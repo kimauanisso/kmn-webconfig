@@ -12,6 +12,10 @@ typedef struct Router {
 
 Router routeHandler = {.routeCount = 0, .routes = {}};
 
+/// @brief Searches route registry for a given route
+/// @param route Target route definition
+/// @return Pointer to route handler, can be NULL if given route is not in
+/// registry
 static WebConfigRouteHandler getHandler(Route route) {
   for (int i = 0; i < routeHandler.routeCount; i++) {
     RouterConfig routeConfig = routeHandler.routes[i];
