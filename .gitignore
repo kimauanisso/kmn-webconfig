@@ -6,3 +6,7 @@ compile_commands.json
 # Dependencies
 .gitmodules
 pico-sdk/
+
+# Dashboard
+node_modules/
+dist/
