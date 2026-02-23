@@ -2,4 +2,4 @@
 
 #include "kmn_webconfig/router.h"
 
-void notFoundHandler(char *req, char *params, HttpBuffer *res);
+void notFoundHandler(HttpBuffer *req, HttpBuffer *res);

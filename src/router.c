@@ -36,21 +36,21 @@ void registerRoute(RouterConfig route) {
   routeHandler.routeCount++;
 }
 
-void handleRoute(char *request, char *params, HttpBuffer *result) {
-  char *line = strtok(request, "\n");
+void handleRoute(HttpBuffer *request, HttpBuffer *result) {
+  char *line = strtok(request->buffer, "\n");
   Route route = parseRoute(line);
 
   if (route.method == -1) {
-    notFoundHandler(request, params, result);
+    notFoundHandler(request, result);
     return;
   }
 
   WebConfigRouteHandler handler = getHandler(route);
 
   if (handler == NULL) {
-    notFoundHandler(request, params, result);
+    notFoundHandler(request, result);
     return;
   }
 
-  handler(request, params, result);
+  handler(request, result);
 }

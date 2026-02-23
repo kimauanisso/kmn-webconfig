@@ -42,7 +42,7 @@ static void build_variable(HttpBuffer *res, WebConfigVar variable) {
   res_buffer_append(res, "}");
 }
 
-void definitionsHandler(char *req, char *params, HttpBuffer *res) {
+void definitionsHandler(HttpBuffer *req, HttpBuffer *res) {
   build_res_start(res, 200, "OK");
   build_res_header(res, "Content-Type", "application/json");
 

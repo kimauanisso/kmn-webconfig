@@ -2,4 +2,4 @@
 
 #include "kmn_webconfig/router.h"
 
-void definitionsHandler(char *req, char *params, HttpBuffer *res);
+void definitionsHandler(HttpBuffer *req, HttpBuffer *res);
