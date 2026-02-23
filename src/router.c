@@ -36,7 +36,7 @@ void registerRoute(RouterConfig route) {
   routeHandler.routeCount++;
 }
 
-void handleRoute(char *request, char *params, ResponseBuffer *result) {
+void handleRoute(char *request, char *params, HttpBuffer *result) {
   char *line = strtok(request, "\n");
   Route route = parseRoute(line);
 

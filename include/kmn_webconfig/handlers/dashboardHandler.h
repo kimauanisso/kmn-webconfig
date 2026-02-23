@@ -2,4 +2,4 @@
 
 #include "kmn_webconfig/router.h"
 
-void dashHandler(char *req, char *params, ResponseBuffer *res);
+void dashHandler(char *req, char *params, HttpBuffer *res);

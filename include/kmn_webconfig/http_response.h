@@ -1,6 +1,7 @@
 #pragma once
 
 #include "kmn_webconfig/config.h"
+#include "kmn_webconfig/http.h"
 
 typedef enum BufferOperationStatus {
   OK,
@@ -8,14 +9,7 @@ typedef enum BufferOperationStatus {
   FORMAT_ERROR
 } BufferOperationStatus;
 
-typedef struct ResponseBuffer {
-  char buffer[MAX_RES_SIZE];
-  unsigned int size;
-  unsigned int used;
-} ResponseBuffer;
+BufferOperationStatus res_buffer_append(HttpBuffer *buf, const char *fmt, ...);
 
-BufferOperationStatus res_buffer_append(ResponseBuffer *buf, const char *fmt,
-                                        ...);
-
-void build_res_start(ResponseBuffer *buf, int code, char *message);
-void build_res_header(ResponseBuffer *buf, char *header, char *value);
+void build_res_start(HttpBuffer *buf, int code, char *message);
+void build_res_header(HttpBuffer *buf, char *header, char *value);

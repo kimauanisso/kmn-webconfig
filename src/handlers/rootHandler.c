@@ -1,6 +1,6 @@
 #include "kmn_webconfig/handlers/rootHandler.h"
 
-void rootHandler(char *req, char *params, ResponseBuffer *res) {
+void rootHandler(char *req, char *params, HttpBuffer *res) {
   build_res_start(res, 302, "Redirect");
   build_res_header(res, "Location", "192.168.4.1/main");
 }

@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-BufferOperationStatus res_buffer_append(ResponseBuffer *buf, const char *fmt,
-                                        ...) {
+BufferOperationStatus res_buffer_append(HttpBuffer *buf, const char *fmt, ...) {
   va_list args;
 
   size_t available = buf->size - buf->used;
@@ -32,10 +31,10 @@ BufferOperationStatus res_buffer_append(ResponseBuffer *buf, const char *fmt,
   buf->buffer[buf->used] = '\0';
 }
 
-void build_res_start(ResponseBuffer *buf, int code, char *message) {
+void build_res_start(HttpBuffer *buf, int code, char *message) {
   res_buffer_append(buf, "HTTP/1.1 %i %s\n", code, message);
 }
 
-void build_res_header(ResponseBuffer *buf, char *header, char *value) {
+void build_res_header(HttpBuffer *buf, char *header, char *value) {
   res_buffer_append(buf, "%s: %s\n", header, value);
 }

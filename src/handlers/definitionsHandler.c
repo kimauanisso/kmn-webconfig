@@ -13,7 +13,7 @@ static char *kind_strings[] = {
 static char *true_string = "true";
 static char *false_string = "false";
 
-static void build_variable(ResponseBuffer *res, WebConfigVar variable) {
+static void build_variable(HttpBuffer *res, WebConfigVar variable) {
   char *kind = kind_strings[variable.kind];
   char *selector = selector_strings[variable.selector];
 
@@ -42,7 +42,7 @@ static void build_variable(ResponseBuffer *res, WebConfigVar variable) {
   res_buffer_append(res, "}");
 }
 
-void definitionsHandler(char *req, char *params, ResponseBuffer *res) {
+void definitionsHandler(char *req, char *params, HttpBuffer *res) {
   build_res_start(res, 200, "OK");
   build_res_header(res, "Content-Type", "application/json");
 

@@ -4,8 +4,7 @@
 #include "http.h"
 #include "http_response.h"
 
-typedef void (*WebConfigRouteHandler)(char *req, char *param,
-                                      ResponseBuffer *res);
+typedef void (*WebConfigRouteHandler)(char *req, char *param, HttpBuffer *res);
 
 typedef struct RouterConfig {
   Route route;
@@ -13,4 +12,4 @@ typedef struct RouterConfig {
 } RouterConfig;
 
 void registerRoute(RouterConfig route);
-void handleRoute(char *request, char *params, ResponseBuffer *result);
+void handleRoute(char *request, char *params, HttpBuffer *result);
