@@ -10,6 +10,7 @@
     "vite": "^7.3.1"
   },
   "devDependencies": {
+    "terser": "^5.46.0",
     "vite-plugin-singlefile": "^2.3.0"
   }
 }

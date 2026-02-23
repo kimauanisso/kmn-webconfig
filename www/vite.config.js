@@ -4,7 +4,7 @@ import { viteSingleFile } from "vite-plugin-singlefile";
 
 export default defineConfig({
   build: {
-    minify: true,
+    minify: "terser",
     sourcemap: false,
     rollupOptions: {
       plugins: [viteSingleFile()],
