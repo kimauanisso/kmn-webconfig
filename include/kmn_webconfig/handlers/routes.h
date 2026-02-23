@@ -4,10 +4,10 @@
 
 #include "kmn_webconfig/handlers/dashboardHandler.h"
 #include "kmn_webconfig/handlers/definitionsHandler.h"
-#include "kmn_webconfig/handlers/rootHandler.h"
+#include "kmn_webconfig/handlers/gen204Handler.h"
 
-static const Route _rootGetRoute = {.method = GET, .path = "/"};
-const RouterConfig rootGet = {.route = _rootGetRoute, .handler = rootHandler};
+static const Route _rootGetRoute = {.method = GET, .path = "/gen_204"};
+const RouterConfig rootGet = {.route = _rootGetRoute, .handler = gen204Handler};
 
 static const Route _dashGetRoute = {.method = GET, .path = "/webconfig"};
 const RouterConfig dashGet = {.route = _dashGetRoute, .handler = dashHandler};
