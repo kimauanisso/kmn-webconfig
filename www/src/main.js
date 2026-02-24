@@ -1,6 +1,6 @@
 async function loadDefinitions() {
   try {
-    const res = await fetch("/defs");
+    const res = await fetch("/definitions");
     const data = await res.json();
     buildUI(data.definitions);
   } catch (err) {
