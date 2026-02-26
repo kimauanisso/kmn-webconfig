@@ -17,18 +17,17 @@ set(COMMON_FILES
 )
 
 if(NOT TEST_MODE)
+  set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR}/pico-sdk)
+  set(PICO_BOARD pico_w)
+  set(PICO_PLATFORM rp2040)
 
-set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR}/pico-sdk)
-set(PICO_BOARD pico_w)
-set(PICO_PLATFORM rp2040)
+  include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
 
-include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+  project(kmn_webconfig C CXX ASM)
 
-project(kmn_webconfig C CXX ASM)
+  pico_sdk_init()
 
-pico_sdk_init()
-
-add_executable(kmn_webconfig
+  add_executable(kmn_webconfig
   ${COMMON_FILES}
   src/main.c
   src/server.c
@@ -36,21 +35,20 @@ add_executable(kmn_webconfig
   deps/dnsserver/dnsserver.c
 )
 
-target_link_libraries(kmn_webconfig
+  target_link_libraries(kmn_webconfig
   pico_stdlib
   hardware_spi
   pico_cyw43_arch_lwip_threadsafe_background
 )
 
-pico_enable_stdio_uart(kmn_webconfig 0)
-pico_enable_stdio_usb(kmn_webconfig 1)
-pico_add_extra_outputs(kmn_webconfig)
-pico_configure_ip4_address(kmn_webconfig PRIVATE CYW43_DEFAULT_IP_AP_ADDRESS 192.168.4.1)
+  pico_enable_stdio_uart(kmn_webconfig 0)
+  pico_enable_stdio_usb(kmn_webconfig 1)
+  pico_add_extra_outputs(kmn_webconfig)
+  pico_configure_ip4_address(kmn_webconfig PRIVATE CYW43_DEFAULT_IP_AP_ADDRESS 192.168.4.1)
 else()
+  project(kmn_webconfig C CXX ASM)
 
-project(kmn_webconfig C CXX ASM)
-
-add_executable(kmn_webconfig
+  add_executable(kmn_webconfig
   ${COMMON_FILES}
   test/test.c
 )
