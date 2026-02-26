@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(TEST_MODE OFF)
+set(TEST_MODE ON)
 
 set(COMMON_FILES
   src/http.c
@@ -16,15 +16,19 @@ set(COMMON_FILES
   src/handlers/definitionsHandler.c
 )
 
+add_subdirectory(www)
+
 if(NOT TEST_MODE)
   set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR}/pico-sdk)
   set(PICO_BOARD pico_w)
   set(PICO_PLATFORM rp2040)
 
   include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+endif()
 
-  project(kmn_webconfig C CXX ASM)
+project(kmn_webconfig C CXX ASM)
 
+if(NOT TEST_MODE)
   pico_sdk_init()
 
   add_executable(kmn_webconfig
@@ -41,22 +45,24 @@ if(NOT TEST_MODE)
   pico_cyw43_arch_lwip_threadsafe_background
 )
 
+  add_dependencies(kmn_webconfig build_www)
+
   pico_enable_stdio_uart(kmn_webconfig 0)
   pico_enable_stdio_usb(kmn_webconfig 1)
   pico_add_extra_outputs(kmn_webconfig)
   pico_configure_ip4_address(kmn_webconfig PRIVATE CYW43_DEFAULT_IP_AP_ADDRESS 192.168.4.1)
 else()
-  project(kmn_webconfig C CXX ASM)
-
   add_executable(kmn_webconfig
-  ${COMMON_FILES}
-  test/test.c
-)
+    ${COMMON_FILES}
+    test/test.c
+  )
 
+  add_dependencies(kmn_webconfig build_www)
 endif()
 
 target_include_directories(kmn_webconfig PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/include
   ${CMAKE_CURRENT_LIST_DIR}/deps
   ${CMAKE_CURRENT_LIST_DIR}/www
+  ${CMAKE_BINARY_DIR}
 )
