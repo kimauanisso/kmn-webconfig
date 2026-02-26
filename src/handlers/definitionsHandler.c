@@ -47,7 +47,7 @@ void definitionsHandler(HttpBuffer *req, HttpBuffer *res) {
   build_res_header(res, "Content-Type", "application/json");
 
   // Response body
-  res_buffer_append(res, "\n");
+  res_buffer_append(res, "\r\n");
   res_buffer_append(res, "{\"definitions\":[");
 
   // Build webconfig variables

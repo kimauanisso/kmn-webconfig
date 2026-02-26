@@ -6,6 +6,6 @@ void dashHandler(HttpBuffer *req, HttpBuffer *res) {
   build_res_header(res, "Content-Type", "text/html; charset=utf-8");
   res_buffer_append(res, "Content-Length: %d\n", index_html_len);
   build_res_header(res, "Connection", "close");
-  res_buffer_append(res, "\n");
+  res_buffer_append(res, "\r\n");
   res_buffer_append(res, index_html);
 }
