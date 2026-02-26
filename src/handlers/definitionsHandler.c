@@ -21,6 +21,7 @@ static void build_variable(HttpBuffer *res, WebConfigVar variable) {
   res_buffer_append(res, "\"id\":%i,", variable.id);
   res_buffer_append(res, "\"type\":\"%s\",", kind);
   res_buffer_append(res, "\"selector\":\"%s\",", selector);
+  res_buffer_append(res, "\"name\":\"%s\",", variable.name);
 
   switch (variable.kind) {
   case INT: {

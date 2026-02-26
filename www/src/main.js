@@ -33,7 +33,7 @@ function buildUI(defs) {
     div.className = "control";
 
     const label = document.createElement("label");
-    label.innerText = def.id;
+    label.innerText = def.name;
     div.appendChild(label);
 
     if (def.selector === "text") {
