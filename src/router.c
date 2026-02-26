@@ -44,6 +44,8 @@ void handleRoute(HttpBuffer *request, HttpBuffer *result) {
   char *line = strtok(request->buffer, "\n");
   Route route = parseRoute(line);
 
+  result->used = 0;
+
   if (route.method == -1) {
     notFoundHandler(request, result);
     return;
