@@ -9,18 +9,21 @@ async function loadDefinitions() {
 }
 
 function sendValue(id, value) {
+  const body = `id=${id}\nvalue=${value}`;
   fetch("/variable", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, value }),
+    headers: { "Content-Type": "text/plain" },
+    body
   }).catch((err) => console.error(err));
 }
 
 function sendAction(id) {
-  fetch("/action", {
+  const params = new URLSearchParams().append("id", id);
+  const url = `/action${params}`;
+
+  fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id }),
   }).catch((err) => console.error(err));
 }
 
