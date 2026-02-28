@@ -26,3 +26,10 @@ extern VariableRegistry varRegistry;
 /// @warning The variable will not be registered if registry's variable count
 /// exceeds VARIABLE_COUNT
 void webconfvariable_register(WebConfigVar variable);
+
+
+/// @brief Gets a variable from registry
+/// @param id Variable's id
+/// @return Pointer to found variable
+/// @warning Can return NULL if variable is not found
+WebConfigVar* webconfvariable_get_by_id(int id);

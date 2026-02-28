@@ -14,6 +14,7 @@ set(COMMON_FILES
   src/handlers/gen204Handler.c
   src/handlers/dashboardHandler.c
   src/handlers/definitionsHandler.c
+  src/handlers/variableHandler.c
 )
 
 add_subdirectory(www)
