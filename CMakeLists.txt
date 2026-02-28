@@ -19,49 +19,28 @@ set(COMMON_FILES
 
 add_subdirectory(www)
 
-if(NOT TEST_MODE)
-  set(PICO_SDK_PATH ${CMAKE_CURRENT_LIST_DIR}/pico-sdk)
-  set(PICO_BOARD pico_w)
-  set(PICO_PLATFORM rp2040)
+project(kmn_webconfig_proj C CXX ASM)
 
-  include(${PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-endif()
+pico_sdk_init()
 
-project(kmn_webconfig C CXX ASM)
-
-if(NOT TEST_MODE)
-  pico_sdk_init()
-
-  add_executable(kmn_webconfig
+add_library(kmn_webconfig STATIC
   ${COMMON_FILES}
-  src/main.c
   src/server.c
   deps/dhcpserver/dhcpserver.c
   deps/dnsserver/dnsserver.c
 )
 
-  target_link_libraries(kmn_webconfig
+target_link_libraries(kmn_webconfig
   pico_stdlib
   hardware_spi
   pico_cyw43_arch_lwip_threadsafe_background
 )
 
-  add_dependencies(kmn_webconfig build_www)
+add_dependencies(kmn_webconfig build_www)
 
-  pico_enable_stdio_uart(kmn_webconfig 0)
-  pico_enable_stdio_usb(kmn_webconfig 1)
-  pico_add_extra_outputs(kmn_webconfig)
-  pico_configure_ip4_address(kmn_webconfig PRIVATE CYW43_DEFAULT_IP_AP_ADDRESS 192.168.4.1)
-else()
-  add_executable(kmn_webconfig
-    ${COMMON_FILES}
-    test/test.c
-  )
+pico_configure_ip4_address(kmn_webconfig PRIVATE CYW43_DEFAULT_IP_AP_ADDRESS 192.168.4.1)
 
-  add_dependencies(kmn_webconfig build_www)
-endif()
-
-target_include_directories(kmn_webconfig PRIVATE
+target_include_directories(kmn_webconfig PUBLIC
   ${CMAKE_CURRENT_LIST_DIR}/include
   ${CMAKE_CURRENT_LIST_DIR}/deps
   ${CMAKE_CURRENT_LIST_DIR}/www
