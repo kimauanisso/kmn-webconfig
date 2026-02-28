@@ -42,7 +42,7 @@ function buildUI(defs) {
     if (def.selector === "text") {
       const input = document.createElement("input");
       input.type = "number";
-      input.value = def.currentValue ?? 0;
+      input.value = def.value ?? 0;
 
       input.onchange = () => {
         let v = input.value;
@@ -58,7 +58,7 @@ function buildUI(defs) {
       input.min = def.min ?? 0;
       input.max = def.max ?? 100;
       input.step = def.type === "float" ? 0.01 : 1;
-      input.value = def.currentValue ?? 0;
+      input.value = def.value ?? 0;
 
       const valueLabel = document.createElement("div");
       valueLabel.className = "sliderValue";
@@ -80,7 +80,7 @@ function buildUI(defs) {
     } else if (def.selector === "checkbox") {
       const input = document.createElement("input");
       input.type = "checkbox";
-      input.checked = def.currentValue ?? false;
+      input.checked = def.value ?? false;
 
       input.onchange = () => {
         sendValue(def.id, input.checked);
