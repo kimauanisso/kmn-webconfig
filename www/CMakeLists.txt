@@ -1,4 +1,4 @@
-set(WWW_DIR "${CMAKE_SOURCE_DIR}/www")
+set(WWW_DIR "${CMAKE_CURRENT_LIST_DIR}")
 set(DIST_DIR "${WWW_DIR}/dist")
 set(OUTPUT_HEADER "${CMAKE_BINARY_DIR}/index_html.h")
 
